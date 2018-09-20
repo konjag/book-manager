@@ -6,9 +6,6 @@ use Core\Request;
 use Core\Database;
 use Core\Twig;
 
-// Database::connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-// Twig::load();
-
 $db = new Database();
 $db->connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
