@@ -6,8 +6,14 @@ use Core\Request;
 use Core\Database;
 use Core\Twig;
 
-Database::connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-Twig::load();
+// Database::connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+// Twig::load();
+
+$db = new Database();
+$db->connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+
+$twig = new Twig();
+$twig->load();
 
 $request = new Request($_SERVER, $_POST, $_GET, $_FILES);
 
@@ -16,7 +22,7 @@ try {
     $method = $request->getMethod($controller);
     $param = $request->getParameter();
 
-    $controller = new $controller;
+    $controller = new $controller($twig, $db);
     echo $controller->$method($param);
 } catch (Exception $e) {
     echo sprintf(

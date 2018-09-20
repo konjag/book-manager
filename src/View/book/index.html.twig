@@ -1,13 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <div class="row">
-        <div class="col-12">
-            <h1>Books</h1>
-        </div>
-    </div>
 
-    <div class="row">
+
+    <div class="row mb-4">
         <div class="col-12">
             <a href="/book/create" class="btn btn-success">Add new book</a>
         </div>
@@ -18,25 +14,25 @@
             <table class="table table-sm">
                 <thead>
                 <tr>
-                    <th>#</th>
-                    <th>Title</th>
-                    <th>Author</th>
-                    <th>Location</th>
-                    <th>Updated at</th>
-                    <th>Created at</th>
-                    <th>Actions</th>
+                    <th class="align-middle">#</th>
+                    <th class="align-middle">Title</th>
+                    <th class="align-middle">Author</th>
+                    <th class="align-middle">Location</th>
+                    <th class="align-middle">Updated at</th>
+                    <th class="align-middle">Created at</th>
+                    <th class="align-middle">Actions</th>
                 </tr>
                 </thead>
                 <tbody>
                     {% for book in books %}
                         <tr>
-                            <td>{{ book.id }}</td>
-                            <td>{{ book.title }}</td>
-                            <td>{{ book.author }}</td>
-                            <td>{{ book.location }}</td>
-                            <td>{{ book.updated_at }}</td>
-                            <td>{{ book.created_at }}</td>
-                            <td>
+                            <td class="align-middle">{{ book.id }}</td>
+                            <td class="align-middle">{{ book.title }}</td>
+                            <td class="align-middle">{{ book.author }}</td>
+                            <td class="align-middle">{{ book.location }}</td>
+                            <td class="align-middle">{{ book.updated_at }}</td>
+                            <td class="align-middle">{{ book.created_at }}</td>
+                            <td class="py-2 align-middle">
                                 <a href="/book/edit/{{ book.id }}" class="btn btn-primary btn-sm">Edit</a>
                                 <a href="/book/delete/{{ book.id }}" class="btn btn-danger btn-sm">Delete</a>
                             </td>

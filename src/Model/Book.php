@@ -6,11 +6,19 @@ use Core\Database;
 
 class Book
 {
+    private $db;
+
+    public function __construct($db)
+    {
+        $this->db = $db;
+    }
+
     public function create($title, $author, $location)
     {
-        $query = 'INSERT INTO books (title, author, updated_at, location, created_at) VALUES (:title, :author, :updated_at, :location, :created_at)';
+        $query = 'INSERT INTO books (title, author, updated_at, location, created_at)
+            VALUES (:title, :author, :updated_at, :location, :created_at)';
 
-        return Database::query($query, [
+        return $this->db->query($query, [
             'title' => $title,
             'author' => $author,
             'location' => $location,
@@ -21,9 +29,11 @@ class Book
 
     public function edit($id, $title, $author, $location)
     {
-        $query = 'UPDATE books SET title = :title, author = :author, location = :location, updated_at = :updated_at WHERE id = :id';
+        $query = 'UPDATE books
+            SET title = :title, author = :author, location = :location, updated_at = :updated_at
+            WHERE id = :id';
 
-        return Database::query($query, [
+        return $this->db->query($query, [
             'id' => $id,
             'title' => $title,
             'author' => $author,
@@ -36,7 +46,7 @@ class Book
     {
         $query = 'DELETE FROM books WHERE id = :id';
 
-        return Database::query($query, [
+        return $this->db->query($query, [
             'id' => $id
         ]);
     }
@@ -45,7 +55,7 @@ class Book
     {
         $query = 'SELECT * FROM books WHERE id = :id';
 
-        return Database::queryOne($query, [
+        return $this->db->queryOne($query, [
             'id' => $id
         ]);
     }
@@ -54,6 +64,6 @@ class Book
     {
         $query = 'SELECT * FROM books ORDER BY id DESC';
 
-        return Database::queryAll($query);
+        return $this->db->queryAll($query);
     }
 }
