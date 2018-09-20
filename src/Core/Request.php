@@ -87,7 +87,11 @@ class Request
     {
         $urlParts = $this->getUrlParts();
 
-        return $urlParts[2];
+        if (isset($urlParts[2])) {
+            return $urlParts[2];
+        }
+
+        return null;
     }
 
     private function getUrlParts()
